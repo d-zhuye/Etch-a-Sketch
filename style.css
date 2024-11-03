@@ -1,0 +1,15 @@
+body * {
+    display: flex;
+}
+
+#container {
+    width: 700px;
+    height: 700px;
+    border: 2px black solid;
+    flex-wrap: wrap;
+}
+
+.grid {
+    background-color: white;
+    flex-shrink: 0;
+}
