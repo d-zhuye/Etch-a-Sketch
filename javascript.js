@@ -2,6 +2,14 @@ let isMouseDown = false;
 const containerSize = 700;
 let gridSize = 16;
 
+const red = "#FF0000";
+const blue = "#0000FF";
+const green = "#008000";
+const yellow = "#FFFF00";
+const black = "#000000";
+const white = "#FFFFFF";
+let selectedColor = "#000000";
+
 function generateCanvas () {
     const container = document.querySelector("#container");
     let numberOfBoxes = gridSize * gridSize; 
@@ -27,7 +35,7 @@ function generateCanvas () {
     gridElements.forEach((grid) => {
         grid.addEventListener("mouseover", (event) => {
             if (isMouseDown) {
-                grid.style.backgroundColor = "blue";
+                grid.style.backgroundColor = selectedColor;
             }
             event.stopPropagation();
         })
@@ -45,6 +53,7 @@ newCanvas.addEventListener("click", (event) => {
         gridSize = userInput;
     } else {
         alert("Invalid grid size. Please select an integer from 1 to 100.");
+        gridSize = 16;
     }
     event.stopPropagation();
     generateCanvas();
@@ -58,5 +67,20 @@ document.addEventListener("mouseup", () => {
 document.addEventListener("mousedown", () => {
     isMouseDown = true;
 });
+
+const colors = document.querySelector("colors");
+colors.addEventListener("click", (event) => {
+    let userSelection = event.target;
+    switch (userSelection.id) {
+        case "red":
+            selectedColor = red;
+            break;
+        case "blue":
+            selectedColor = blue;
+            break;
+        default:
+            selectedColor = black;
+    }
+})
 
 generateCanvas();

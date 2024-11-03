@@ -1,6 +1,41 @@
-body * {
+body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+h1 {
+    font-size: 50px;
+}
+
+#controlPanel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+#controlPanel > button {
+    padding: 10px 30px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#clearCanvas {
+    color: red;
+    background-color: #f1bcbb;
+    border-color: red;
+}
+
+#newCanvas {
+    color: orange;
+    background-color: #FFDFBE;
+    border-color: orange;
+}
+
 
 #container {
     width: 700px;
@@ -12,4 +47,13 @@ body * {
 .grid {
     background-color: white;
     flex-shrink: 0;
+}
+
+#colors {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#colors > button {
+    font-size: 20px;
 }
