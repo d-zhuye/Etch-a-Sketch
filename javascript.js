@@ -1,3 +1,4 @@
+let isMouseDown = false;
 const containerSize = 700;
 let gridSize = 16;
 
@@ -20,15 +21,17 @@ function generateCanvas () {
         newContainer.appendChild(div)
     }    
 
+    
     let gridElements = document.querySelectorAll(".grid");
 
     gridElements.forEach((grid) => {
         grid.addEventListener("mouseover", (event) => {
-            grid.style.backgroundColor = "blue";
+            if (isMouseDown) {
+                grid.style.backgroundColor = "blue";
+            }
             event.stopPropagation();
         })
     });
-
 }
 
 
@@ -45,6 +48,15 @@ newCanvas.addEventListener("click", (event) => {
     }
     event.stopPropagation();
     generateCanvas();
+});
+
+
+document.addEventListener("mouseup", () => {
+    isMouseDown = false;
+});
+
+document.addEventListener("mousedown", () => {
+    isMouseDown = true;
 });
 
 generateCanvas();
