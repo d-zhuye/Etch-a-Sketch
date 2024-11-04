@@ -1,4 +1,3 @@
-let isMouseDown = false;
 const containerSize = 700;
 let gridSize = 16;
 
@@ -9,6 +8,8 @@ const yellow = "#FFFF00";
 const black = "#000000";
 const white = "#FFFFFF";
 let selectedColor = "#000000";
+
+let isMouseDown = false;
 
 function generateCanvas () {
     const container = document.querySelector("#container");
@@ -45,29 +46,21 @@ function generateCanvas () {
     });
 }
 
-
 const newCanvas = document.querySelector("#newCanvas");
 
 newCanvas.addEventListener("click", (event) => {
-    userInput = prompt("Enter a number to define grid size for your canvas.");
+    userInput = prompt("Enter a number from 1 to 100 to define grid size for your canvas.");
     userInput = Number(userInput);
     console.log(userInput);
+
     if (userInput <= 100 && Number.isInteger(userInput)) {
         gridSize = userInput;
     } else {
         alert("Invalid grid size. Please select an integer from 1 to 100.");
-        gridSize = 16;
     };
+
     generateCanvas();
     event.stopPropagation();
-});
-
-document.addEventListener("mouseup", () => {
-    isMouseDown = false;
-});
-
-document.addEventListener("mousedown", () => {
-    isMouseDown = true;
 });
 
 const colors = document.querySelector("#colors");
@@ -96,5 +89,14 @@ colors.addEventListener("click", (event) => {
             selectedColor = black;
     }
 })
+
+
+
+document.addEventListener("mouseup", () => {
+    isMouseDown = false;
+});
+document.addEventListener("mousedown", () => {
+    isMouseDown = true;
+});
 
 generateCanvas();
