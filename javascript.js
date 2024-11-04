@@ -16,24 +16,27 @@ function generateCanvas () {
     let boxSize = `${containerSize / gridSize}px`;
 
     const body = document.querySelector("body");
+    let parent = body.parentNode;
     body.removeChild(container);
+
+    const colors = document.querySelector("#colors");
 
     const newContainer = document.createElement("div");
     newContainer.id = "container";
-    body.appendChild(newContainer);
+    body.insertBefore(newContainer, colors);
 
     for (let i = 0; i < numberOfBoxes; i ++){
         const div = document.createElement("div");
         div.classList.toggle("grid");
         div.style.cssText = `width: ${boxSize}; height: ${boxSize}`;
-        newContainer.appendChild(div)
+        newContainer.appendChild(div); 
     }    
 
-    
     let gridElements = document.querySelectorAll(".grid");
 
     gridElements.forEach((grid) => {
         grid.addEventListener("mouseover", (event) => {
+            selectedColor;
             if (isMouseDown) {
                 grid.style.backgroundColor = selectedColor;
             }
@@ -54,11 +57,10 @@ newCanvas.addEventListener("click", (event) => {
     } else {
         alert("Invalid grid size. Please select an integer from 1 to 100.");
         gridSize = 16;
-    }
-    event.stopPropagation();
+    };
     generateCanvas();
+    event.stopPropagation();
 });
-
 
 document.addEventListener("mouseup", () => {
     isMouseDown = false;
@@ -68,7 +70,7 @@ document.addEventListener("mousedown", () => {
     isMouseDown = true;
 });
 
-const colors = document.querySelector("colors");
+const colors = document.querySelector("#colors");
 colors.addEventListener("click", (event) => {
     let userSelection = event.target;
     switch (userSelection.id) {
@@ -77,6 +79,18 @@ colors.addEventListener("click", (event) => {
             break;
         case "blue":
             selectedColor = blue;
+            break;
+        case "green":
+            selectedColor = green;
+            break;
+        case "yellow":
+            selectedColor = yellow;
+            break;
+        case "black":
+            selectedColor = black;
+            break;
+        case "erase":
+            selectedColor = white;
             break;
         default:
             selectedColor = black;
